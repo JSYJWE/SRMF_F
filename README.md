@@ -2,15 +2,12 @@
 
 solo_rice_male_female
 
+### 화면정의서
+https://ovenapp.io/view/7eBHJgL37JBOMWjGst2eSETIQNugRuCz/
+
+### API 정의서
+
 ## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### 맥북기준
+1. 안드로이드 스튜디오 다운로드
+2. flutter 다운로드
