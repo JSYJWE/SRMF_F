@@ -10,7 +10,6 @@
 .svn/
 analysis_options.yaml
 pubspec.lock
-pubspec.yaml
 migrate_working_dir/
 
 # IntelliJ related
