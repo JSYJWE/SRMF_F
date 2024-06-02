@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:srmf/widgets/bottom_bar.dart';
 
 class Mypage extends StatefulWidget {
   const Mypage({Key? key}) : super(key: key);

@@ -1,9 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:srmf/screens/chat/chat_list.dart';
-import 'package:srmf/screens/mypage/mypage.dart';
-import 'package:srmf/screens/payment/payment.dart';
-import 'package:srmf/widgets/bottom_bar.dart';
 
 // class MainScreen extends StatefulWidget {
 //   const MainScreen({super.key});

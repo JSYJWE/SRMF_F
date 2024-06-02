@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:srmf/widgets/bottom_bar.dart';
 
 class ChatList extends StatefulWidget {
   const ChatList({Key? key}) : super(key: key);

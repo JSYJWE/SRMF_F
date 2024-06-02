@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:srmf/widgets/bottom_bar.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -21,7 +20,6 @@ class MainState extends State<MainScreen>{
       body: Center(
 
       ),
-      bottomNavigationBar: BottomBar(),
     );
 
     throw UnimplementedError();
