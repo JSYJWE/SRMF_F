@@ -1,10 +1,25 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:srmf/router/locations.dart';
+import 'package:srmf/screens/auth/auth_screen.dart';
 import 'package:srmf/screens/chat/chat_list.dart';
 import 'package:srmf/screens/main_screen.dart';
 import 'package:srmf/screens/mypage/mypage.dart';
 import 'package:srmf/screens/payment/payment.dart';
+import 'package:srmf/widgets/splash_screen.dart';
 
+//비머 전역 선언
+final _routerDelegate = BeamerDelegate(
+    guards: [BeamGuard(
+        pathBlueprints: ['/'],//root로 해놔서 그런것 mypage일때 로그인!
+        check: (context, location) {return false;},
+        showPage: BeamPage(child: AuthScreen())//로그인하라고 이동시킬페이지
+    )],
+    locationBuilder: BeamerLocationBuilder(
+      beamLocations: [HomeLocation()]
+    )
+);
 void main() {
   runApp(const MyApp());
 }
@@ -14,17 +29,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: NavigationBar(),
-      // initialRoute: "/",
-      // getPages: [
-      //   // GetPage(name: '/', page: ()=> const MainScreen()),
-      //   GetPage(name: '/chat', page: ()=> const ChatList()),
-      //   GetPage(name: '/payment', page: ()=> const Payment()),
-      //   GetPage(name: '/my-page', page: ()=> const Mypage())
-      // ],
+    //퓨처함수로 로딩 구현
+    return FutureBuilder<Object>(
+        future: Future.delayed(Duration(seconds: 3), () => 100),
+        builder: (context, snapshot) {
+          return AnimatedSwitcher(
+              duration: Duration(microseconds: 900), //페이드인아웃 효과
+              child: _splashLodingWidget(snapshot), //스냅샷 실행 위젯지정
+          );
+        }
     );
+  }
+
+  /**
+   * 스플래쉬 로딩 위젯 선언(인스턴스)
+   */
+  StatelessWidget _splashLodingWidget(AsyncSnapshot<Object> snapshot) {
+    if(snapshot.hasError) {print('에러가 발생하였습니다.'); return Text('Error');}
+    else if(snapshot.hasData) {return SrmfApp();}
+    else {return SplashScreen();}
   }
 }
 
@@ -176,3 +199,16 @@ class _NavigationState extends State<NavigationBar> {
 //     );
 //   }
 // }
+
+//홈페이지 클래스 선언
+class SrmfApp extends StatelessWidget {
+  const SrmfApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routeInformationParser: BeamerParser(),
+      routerDelegate: _routerDelegate,
+    );
+  }
+}
