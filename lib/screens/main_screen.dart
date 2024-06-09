@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:srmf/screens/chat/chat_list.dart';
+import 'package:srmf/screens/mypage/mypage.dart';
+import 'package:srmf/screens/payment/payment.dart';
 
 // class MainScreen extends StatefulWidget {
 //   const MainScreen({super.key});
@@ -79,27 +82,71 @@ import 'package:flutter/material.dart';
 // }
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  //페이지컨트롤러 적용
+  // PageController controller;
+
+  const MainScreen({Key ? key}) : super(key : key);
 
   @override
-  State<MainScreen> createState() => _NavigationState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _NavigationState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen> {
+  int _bottomSelectedIndex = 0;
+
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
+  Widget build(BuildContext contet) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('홈'),
+        title: Text('제목'),
+        actions: [],
       ),
-      body: Center(
+      body: IndexedStack(
+        index: _bottomSelectedIndex,
+        children: [
+          ChatList(),
+          Container(
+            color: Colors.accents[4],
+          ),
+          Payment(),
+          Mypage(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _bottomSelectedIndex,
+
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(icon: Icon(_bottomSelectedIndex == 0 ? Icons.chat_bubble : Icons.chat_bubble_outline_sharp), label: '채팅',),
+          BottomNavigationBarItem(icon: Icon(_bottomSelectedIndex == 1 ? Icons.home : Icons.home_outlined), label: '홈'),
+          BottomNavigationBarItem(icon: Icon(_bottomSelectedIndex == 2 ? Icons.payments_outlined : Icons.payment_outlined), label: '결제'),
+          BottomNavigationBarItem(icon: Icon(_bottomSelectedIndex == 3 ? Icons.account_box : Icons.account_box_outlined), label: '마이페이지'),
+        ],
+        onTap: (index){
+          setState(() {
+            _bottomSelectedIndex  = index;
+          });
+        },
       ),
     );
-
-    throw UnimplementedError();
   }
+}
+
+// class _NavigationState extends State<MainScreen> {
+//   @override
+//   Widget build(BuildContext context) {
+//     // TODO: implement build
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+//         title: Text('홈'),
+//       ),
+//       body: Center(
+//       ),
+//     );
+//
+//     throw UnimplementedError();
+//   }
   // int selectedIndex = 0;
   //
   // @override
@@ -143,4 +190,4 @@ class _NavigationState extends State<MainScreen> {
   //     ),
   //   );
   // }
-}
+//}
